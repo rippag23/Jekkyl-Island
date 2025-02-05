@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apa yhaa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9e3e3;
+            padding: 50px;
+            position: relative;
+        }
+        h1 {
+            color: #d6336c;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: 0.3s;
+        }
+        #yesButton {
+            background-color: #4CAF50;
+        }
+        #noButton {
+            background-color: #f44336;
+            position: absolute;
+        }
+        .gif-container img {
+            width: 400px;
+        }
+        .hidden {
+            display: none;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hide;
+            top: 0;
+            left: 0;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 80%, 18% 100%, 0% 38%);
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
+        }
+        .frame {
+            border: 5px solid #d6336c;
+            border-radius: 15px;
+            padding: 20px;
+            display: inline-block;
+            background-color: white;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="questionPage">
+        <div class="frame">
+            <div class="gif-container">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDg3ZmpxdTZoeDlxNGswM2dpenZiOG91Z2Q0bW5pcHV2aWplaDMwaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/q5aS9Pew1xVz6pjQRf/giphy.gif" alt="Valentine GIF">
+            </div>
+            <h1>Mau keluar gaa??</h1>
+            <button id="yesButton" class="button">mauuu</button>
+            <button id="noButton" class="button">ngak</button>
+        </div>
+    </div>
+    
+    <div id="lovePage" class="hidden">
+        <div class="hearts"></div>
+        <h1>Yeayy!!</h1>
+        <div class="gif-container">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzJyenNjemF5cnZsNmNvbWo1bWpkYTlwb3lxYmQyM3JlNXBlZmhiZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wDYSVNy6PWhAShcMZz/giphy.gif">
+        </div>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const questionPage = document.getElementById('questionPage');
+        const lovePage = document.getElementById('lovePage');
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        noButton.addEventListener('click', () => {
+            alert('yahhh sedihh');
+        });
+
+        yesButton.addEventListener('click', () => {
+            questionPage.classList.add('hidden');
+            lovePage.classList.remove('hidden');
+            createHearts();
+        });
+
+        function createHearts() {
+            function generateHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+                document.querySelector('.hearts').appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+            setInterval(generateHeart, 300);
+        }
+    </script>
+</body>
+</html>
